@@ -155,23 +155,46 @@ pub fn build(b: *std.Build) void {
     const link_mode = b.option(std.builtin.LinkMode, "linkage", "how the library should be linked (default: static)");
     const upstream = b.dependency("libraw_main", .{});
 
-    const mod = b.createModule(.{
+    // const mod_clib = b.createModule(.{
+    //     .target = target,
+    //     .optimize = optimize,
+    //     .link_libc = true,
+    //     .link_libcpp = true,
+    // });
+    const mod_clib = b.addModule("mod_libraw_clib", .{
         .target = target,
         .optimize = optimize,
         .link_libc = true,
         .link_libcpp = true,
     });
-    mod.addCSourceFiles(.{
+    mod_clib.addCSourceFiles(.{
         .root = upstream.path(""),
         .files = &libraw_sources,
         .flags = &.{ "-DLIBRAW_NOTHREADS", "-w", "-pthread" },
     });
-    mod.addIncludePath(upstream.path(""));
-    const lib = b.addLibrary(.{
+    mod_clib.addIncludePath(upstream.path(""));
+    const clib = b.addLibrary(.{
         .name = "libraw_clib",
-        .root_module = mod,
+        .root_module = mod_clib,
         .linkage = link_mode orelse .static,
     });
-    lib.installHeadersDirectory(upstream.path(""), "", .{});
-    b.installArtifact(lib);
+    clib.installHeadersDirectory(upstream.path(""), "", .{});
+    b.installArtifact(clib);
+
+    // translate-c the libraw.h file
+    const translateC = b.addTranslateC(.{
+        .root_source_file = upstream.path("libraw/libraw.h"),
+        .target = target,
+        .optimize = optimize,
+    });
+
+    // ...and the Zig module for the generated bindings
+    const mod = b.addModule("libraw", .{
+        .root_source_file = translateC.getOutput(),
+        .target = target,
+        .optimize = optimize,
+        .link_libc = true,
+        .link_libcpp = true,
+    });
+    mod.linkLibrary(lib);
 }

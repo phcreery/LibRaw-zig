@@ -1,0 +1,22 @@
+.{
+    .name = .libraw,
+    .version = "0.21.4",
+    .fingerprint = 0x2e0b467149ba5e73,
+    .minimum_zig_version = "0.15.1",
+    .dependencies = .{
+        .libraw = .{
+            .url = "https://github.com/LibRaw/LibRaw/archive/refs/tags/0.21.4.tar.gz",
+            .hash = "N-V-__8AAI05KgAYTU-vHiPdVN1xvftKAoXRkNXikS6XRe1F",
+        },
+        .libraw_main = .{
+            .url = "https://github.com/LibRaw/LibRaw/archive/refs/tags/0.21.4.tar.gz",
+            .hash = "N-V-__8AAI05KgAYTU-vHiPdVN1xvftKAoXRkNXikS6XRe1F",
+        },
+    },
+    .paths = .{
+        "LICENSE",
+        "README.md",
+        "build.zig",
+        "build.zig.zon",
+    },
+}

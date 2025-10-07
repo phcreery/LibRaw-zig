@@ -196,5 +196,5 @@ pub fn build(b: *std.Build) void {
         .link_libc = true,
         .link_libcpp = true,
     });
-    mod.linkLibrary(lib);
+    mod.linkLibrary(clib);
 }

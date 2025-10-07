@@ -154,14 +154,8 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
     const link_mode = b.option(std.builtin.LinkMode, "linkage", "how the library should be linked (default: static)");
-    const upstream = b.dependency("libraw_main", .{});
+    const upstream = b.dependency("libraw_src", .{});
 
-    // const mod_clib = b.createModule(.{
-    //     .target = target,
-    //     .optimize = optimize,
-    //     .link_libc = true,
-    //     .link_libcpp = true,
-    // });
     const mod_clib = b.addModule("mod_libraw_clib", .{
         .target = target,
         .optimize = optimize,
@@ -184,7 +178,6 @@ pub fn build(b: *std.Build) void {
     }
     mod_clib.linkSystemLibrary("m", .{});
     mod_clib.linkSystemLibrary("ws2_32", .{});
-    // mod_clib.linkSystemLibrary("raw", .{});
     const clib = b.addLibrary(.{
         .name = "libraw_clib",
         .root_module = mod_clib,

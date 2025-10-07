@@ -4,11 +4,7 @@
     .fingerprint = 0x2e0b467149ba5e73,
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
-        .libraw = .{
-            .url = "https://github.com/LibRaw/LibRaw/archive/refs/tags/0.21.4.tar.gz",
-            .hash = "N-V-__8AAI05KgAYTU-vHiPdVN1xvftKAoXRkNXikS6XRe1F",
-        },
-        .libraw_main = .{
+        .libraw_src = .{
             .url = "https://github.com/LibRaw/LibRaw/archive/refs/tags/0.21.4.tar.gz",
             .hash = "N-V-__8AAI05KgAYTU-vHiPdVN1xvftKAoXRkNXikS6XRe1F",
         },

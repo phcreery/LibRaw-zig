@@ -7,7 +7,7 @@ This is [LibRaw](https://www.libraw.org/) 0.21.4, packaged for [Zig](https://zig
 First, update your `build.zig.zon`:
 
 ```
-zig fetch --save
+zig fetch --save=libraw  git+https://github.com/phcreery/LibRaw-zig
 ```
 
 Next, add this snippet to your `build.zig` script:

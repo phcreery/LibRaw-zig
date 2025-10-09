@@ -175,9 +175,9 @@ pub fn build(b: *std.Build) void {
         // https://github.com/ziglang/zig/blob/ddc815e3d88d32b8f3df0610ee59c8d34b8ff8eb/lib/std/zig/system/NativePaths.zig#L130
         const system_library_path: std.Build.LazyPath = .{ .cwd_relative = "C:\\Windows\\System32" };
         mod_clib.addLibraryPath(system_library_path);
+        mod_clib.linkSystemLibrary("ws2_32", .{});
     }
     mod_clib.linkSystemLibrary("m", .{});
-    mod_clib.linkSystemLibrary("ws2_32", .{});
     const clib = b.addLibrary(.{
         .name = "libraw_clib",
         .root_module = mod_clib,

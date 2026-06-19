@@ -2,7 +2,7 @@
     .name = .libraw,
     .version = "0.21.4",
     .fingerprint = 0x2e0b467149ba5e73,
-    .minimum_zig_version = "0.15.1",
+    .minimum_zig_version = "0.16.0",
     .dependencies = .{
         .libraw_src = .{
             .url = "https://github.com/LibRaw/LibRaw/archive/refs/tags/0.21.4.tar.gz",

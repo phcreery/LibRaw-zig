@@ -1,6 +1,6 @@
 # LibRaw
 
-This is [LibRaw](https://www.libraw.org/) 0.21.4, packaged for [Zig](https://ziglang.org/).
+This is [LibRaw](https://www.libraw.org/) 0.21.4, packaged for [Zig](https://ziglang.org/) 0.16.0.
 
 ## How to use it
 
